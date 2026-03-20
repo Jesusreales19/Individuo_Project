@@ -9,12 +9,12 @@
 
   <h1>Lista de Individuos</h1>
 
-  <form th:action="@{/}" method="get" style="margin-bottom: 20px;">
-    <label for="palabraClave">Buscar:</label>
+  <form th:action="@{/}" method="get" class="search-container">
+    <label for="palabraClave" class="btn btn-primary">Buscar:</label>
     <input type="text" name="palabraClave" id="palabraClave" th:value="${palabraClave}" placeholder="Nombre o apellido..." required>
 
     <button type="submit">Buscar</button>
-    <a th:href="@{/}"><button type="button">Limpiar Filtro</button></a>
+    <a th:href="@{/}"><button type="button" class="btn btn-secondary">Limpiar Filtro</button></a>
   </form>
   <table>
     <thead>
@@ -36,24 +36,23 @@
         <td th:text="${ind.correo}"></td>
         <td th:text="${ind.telefono}"></td>
 
-        <td>
-          <a th:href="@{/detalle(id=${ind.idIndividuo})}">Ver</a>
-          <span th:if="${esAdmin}"></span>
-          <a th:href="@{/editar(id=${ind.idIndividuo})}">Editar</a>
-          <a th:href="@{/eliminar(id=${ind.idIndividuo})}">Eliminar</a>
+        <td class="acciones">
+          <a th:href="@{/detalle(id=${ind.idIndividuo})}" class="btn btn-primary">Ver</a>
+          <a th:if="${esAdmin}" th:href="@{/editar(id=${ind.idIndividuo})}" class="btn btn-warning">Editar</a>
+          <a th:if="${esAdmin}" th:href="@{/eliminar(id=${ind.idIndividuo})}" class="btn btn-danger">Eliminar</a>
         </td>
       </tr>
     </tbody>
   </table>
-  <br><br>
-  <form th:action="@{/logout}" method="post">
-    <button type="submit">Cerrar sesión</button>
-  </form>
-  <td>
+  <div class="user-info">
   <a th:href="@{/nuevo}">Nuevo Individuo</a>
-    <p><strong>Usuario</strong> <span th:text="${usuarioActual}"></span></samp></p>
-    <p><strong>Roles</strong> <span th:text="${rolesActual}"></span></samp></p>
-    <p><strong>¿Es Admin?</strong> <samp th:text="${esAdmin}"></samp></samp></p>
-  </td>
+    <p><strong>Usuario</strong> <span th:text="${usuarioActual}"></span></p>
+    <p><strong>Roles</strong> <span th:text="${rolesActuales}"></span></p>
+    <p><strong>¿Es Admin?</strong> <span th:text="${esAdmin}"></span></p>
+  </div>
+  <br><br>
+  <form th:action="@{/logout}" method="post"  style="margin-top: 16px;">
+    <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+  </form>
 </body>
 </html>

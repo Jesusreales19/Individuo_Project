@@ -6,31 +6,32 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-  <h1 th:text="${individuo.IdIndividuo == null ? 'Nuevo Individuo' :'Editar Individuo'}"> </h1>
+  <h1 th:text="${individuo.idIndividuo == null ? 'Nuevo Individuo' :'Editar Individuo'}"> </h1>
   <form th:action="@{/guardar}" th:object="${individuo}" method="post">
-    <input type="hidden" th:field="*{IdIndividuo}" />
+
+    <input type="hidden" th:field="*{idIndividuo}" />
     <label>Nombre: </label>
     <input type="text" th:field="*{nombre}" />
-    <spam style="color: red" th:if=${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
+    <span class="error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
 
     <label>Apellido: </label>
     <input type="text" th:field="*{apellido}" />
-      <spam style="color: red" th:if=${#fields.hasErrors('apellido')}" th:errors="*{apellido}">
+      <span class="error" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></span>
 
     <label>Edad: </label>
     <input type="number" th:field="*{edad}" />
 
     <label>Correo: </label>
     <input type="email" th:field="*{correo}" />
-    <spam style="color: red" th:if=${#fields.hasErrors('correo')}" th:errors="*{correo}">
+    <span class="error" th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}"></span>
 
     <label>Telefono: </label>
     <input type="text" th:field="*{telefono}"/>
-      <spam style="color: red" th:if=${#fields.hasErrors('telefono')}" th:errors="*{telefono}">
+    <span class="error" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></span>
 
     <br><br>
-    <button type="submit">Guardar</button>
-    <a th:href="@{/}">Cancelar</a>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a th:href="@{/}" class="btn btn-secondary">Cancelar</a>
   </form>
 
 </body>
