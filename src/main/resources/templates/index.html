@@ -9,13 +9,16 @@
 
   <h1>Lista de Individuos</h1>
 
-  <form th:action="@{/}" method="get" class="search-container">
+  <div class="search-container">
     <label for="palabraClave" class="btn btn-primary">Buscar:</label>
-    <input type="text" name="palabraClave" id="palabraClave" th:value="${palabraClave}" placeholder="Nombre o apellido..." required>
+    <form th:action="@{/}" method="get" style="display:flex; gap:10px;">
+      <input type="text" name="palabraClave" id="palabraClave" th:value="${palabraClave}" placeholder="Nombre o apellido..." required>
 
-    <button type="submit">Buscar</button>
-    <a th:href="@{/}"><button type="button" class="btn btn-secondary">Limpiar Filtro</button></a>
-  </form>
+      <button type="submit" class="btn btn-primary">Buscar</button>
+      <a th:href="@{/}"><button type="button" class="btn btn-secondary">Limpiar Filtro</button></a>
+    </form>
+  </div>
+
   <table>
     <thead>
       <tr>
@@ -45,7 +48,7 @@
     </tbody>
   </table>
   <div class="user-info">
-  <a th:href="@{/nuevo}">Nuevo Individuo</a>
+  <a th:href="@{/nuevo}" class="btn btn-primary">Nuevo Individuo</a>
     <p><strong>Usuario</strong> <span th:text="${usuarioActual}"></span></p>
     <p><strong>Roles</strong> <span th:text="${rolesActuales}"></span></p>
     <p><strong>¿Es Admin?</strong> <span th:text="${esAdmin}"></span></p>

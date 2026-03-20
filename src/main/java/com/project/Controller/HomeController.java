@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import java.util.stream.Collectors;
 
 @Controller
 public class HomeController {
@@ -37,7 +38,10 @@ public class HomeController {
 
         if (authentication != null) {
             usuarioActual = authentication.getName();
-            rolesActuales = authentication.getAuthorities().toString();
+            rolesActuales = authentication.getAuthorities().stream()
+                    .map(GrantedAuthority::getAuthority)
+                    .filter(a -> a.startsWith("ROLE_"))
+                    .collect(Collectors.joining(", "));
 
             for (GrantedAuthority authority : authentication.getAuthorities()) {
                 if (authority.getAuthority().equals("ROLE_ADMIN")) {
