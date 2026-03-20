@@ -7,6 +7,24 @@ body {
 }
 h1 { color: #2c3e50; text-align: center; }
 
+.search-container label {
+    display: inline;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-top: 0;
+    align-self: center;
+}
+
+.search-container form {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 0;
+    margin: 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
 .search-container {
     margin-bottom: 20px;
     display: flex;
