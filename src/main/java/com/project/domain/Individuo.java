@@ -14,13 +14,13 @@ public class Individuo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
 
-    @NotEmpty
+
     private Integer idIndividuo;
     @NotEmpty
     private String nombre;
     @NotEmpty
     private String apellido;
-    @NotEmpty
+
     private int edad;
     @NotEmpty
     private String correo;
