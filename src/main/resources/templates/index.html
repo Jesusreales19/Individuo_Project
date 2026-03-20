@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lista de Individuos</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+  <h1>Lista de Individuos</h1>
+
+  <form th:action="@{/}" method="get" style="margin-bottom: 20px;">
+    <label for="palabraClave">Buscar:</label>
+    <input type="text" name="palabraClave" id="palabraClave" th:value="${palabraClave}" placeholder="Nombre o apellido..." required>
+
+    <button type="submit">Buscar</button>
+    <a th:href="@{/}"><button type="button">Limpiar Filtro</button></a>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Edad</th>
+        <th>Correo</th>
+        <th>Telefono</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr th:each="ind : ${lista}">
+        <td th:text="${ind.nombre}"></td>
+        <td th:text="${ind.apellido}"></td>
+        <td th:text="${ind.edad}"></td>
+        <td th:text="${ind.correo}"></td>
+        <td th:text="${ind.telefono}"></td>
+
+        <td>
+          <a th:href="@{/detalle(id=${ind.idIndividuo})}">Ver</a>
+          <span th:if="${esAdmin}"></span>
+          <a th:href="@{/editar(id=${ind.idIndividuo})}">Editar</a>
+          <a th:href="@{/eliminar(id=${ind.idIndividuo})}">Eliminar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br><br>
+  <form th:action="@{/logout}" method="post">
+    <button type="submit">Cerrar sesión</button>
+  </form>
+  <td>
+  <a th:href="@{/nuevo}">Nuevo Individuo</a>
+    <p><strong>Usuario</strong> <span th:text="${usuarioActual}"></span></samp></p>
+    <p><strong>Roles</strong> <span th:text="${rolesActual}"></span></samp></p>
+    <p><strong>¿Es Admin?</strong> <samp th:text="${esAdmin}"></samp></samp></p>
+  </td>
+</body>
+</html>

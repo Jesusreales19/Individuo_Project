@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>formulario individuo</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+  <h1 th:text="${individuo.IdIndividuo == null ? 'Nuevo Individuo' :'Editar Individuo'}"> </h1>
+  <form th:action="@{/guardar}" th:object="${individuo}" method="post">
+    <input type="hidden" th:field="*{IdIndividuo}" />
+    <label>Nombre: </label>
+    <input type="text" th:field="*{nombre}" />
+    <spam style="color: red" th:if=${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
+
+    <label>Apellido: </label>
+    <input type="text" th:field="*{apellido}" />
+      <spam style="color: red" th:if=${#fields.hasErrors('apellido')}" th:errors="*{apellido}">
+
+    <label>Edad: </label>
+    <input type="number" th:field="*{edad}" />
+
+    <label>Correo: </label>
+    <input type="email" th:field="*{correo}" />
+    <spam style="color: red" th:if=${#fields.hasErrors('correo')}" th:errors="*{correo}">
+
+    <label>Telefono: </label>
+    <input type="text" th:field="*{telefono}"/>
+      <spam style="color: red" th:if=${#fields.hasErrors('telefono')}" th:errors="*{telefono}">
+
+    <br><br>
+    <button type="submit">Guardar</button>
+    <a th:href="@{/}">Cancelar</a>
+  </form>
+
+</body>
+</html>
