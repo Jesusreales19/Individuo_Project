@@ -6,10 +6,10 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-  <h1 th:text="${individuo.idIndividuo == null ? 'Nuevo Individuo' :'Editar Individuo'}"> </h1>
+  <h1 th:text="${individuo.IdIndividuo == null ? 'Nuevo Individuo' :'Editar Individuo'}"> </h1>
   <form th:action="@{/guardar}" th:object="${individuo}" method="post">
 
-    <input type="hidden" th:field="*{idIndividuo}" />
+    <input type="hidden" th:field="*{IdIndividuo}" />
     <label>Nombre: </label>
     <input type="text" th:field="*{nombre}" />
     <span class="error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
